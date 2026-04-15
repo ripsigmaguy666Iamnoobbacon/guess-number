@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+    }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Guess the number (1 - 100)</h2>
+  <p>You have 6 chances!</p>
+
+  <input type="number" id="guessInput" placeholder="Enter number">
+  <button onclick="checkGuess()">Guess</button>
+
+  <div id="message"></div>
+
+  <script>
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+    let count = 0;
+    let limit = 6;
+
+    function checkGuess() {
+      let input = document.getElementById("guessInput");
+      let message = document.getElementById("message");
+      let guess = Number(input.value);
+
+      if (!guess) {
+        message.textContent = "Please enter a number!";
+        return;
+      }
+
+      if (count >= limit) {
+        message.textContent = "YOU LOSE, LOSER! Reload to play again!";
+        return;
+      }
+
+      count++;
+
+      if (guess === randomNumber) {
+        message.textContent = "BINGO! You win!";
+      } else if (guess < randomNumber) {
+        message.textContent = `Too small! (${count}/${limit})`;
+      } else {
+        message.textContent = `Too large! (${count}/${limit})`;
+      }
+
+      if (count === limit && guess !== randomNumber) {
+        message.textContent = `YOU LOSE! The number was ${randomNumber}`;
+      }
+
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
