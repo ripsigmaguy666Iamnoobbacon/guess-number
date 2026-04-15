@@ -18,6 +18,14 @@
       margin-top: 20px;
       font-weight: bold;
     }
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: gray;
+    }
   </style>
 </head>
 <body>
@@ -30,15 +38,19 @@
 
   <div id="message"></div>
 
+  <footer>
+    © 2026 Tran Hung Huy. All rights reserved.
+  </footer>
+
   <script>
     let randomNumber = Math.floor(Math.random() * 100) + 1;
     let count = 0;
     let limit = 6;
 
     function checkGuess() {
-      let input = document.getElementById("guessInput");
-      let message = document.getElementById("message");
-      let guess = Number(input.value);
+      const input = document.getElementById("guessInput");
+      const message = document.getElementById("message");
+      const guess = Number(input.value);
 
       if (!guess) {
         message.textContent = "Please enter a number!";
@@ -46,7 +58,7 @@
       }
 
       if (count >= limit) {
-        message.textContent = "YOU LOSE, LOSER! Reload to play again!";
+        message.textContent = "YOU LOSE! Reload to play again!";
         return;
       }
 
